@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="UTF-8">
+<title>NOX AI خفيف</title>
+<style>
+body { font-family: Arial; background: #f5f5f5; margin:0; padding:0; }
+#app { padding:20px; max-width:600px; margin:auto; }
+#output { white-space: pre-wrap; background:#fff; padding:10px; margin-top:10px; border:1px solid #ccc; height:200px; overflow-y:auto; }
+input, button { padding:10px; margin-top:5px; width:100%; box-sizing:border-box; }
+</style>
+</head>
+<body>
+
+<div id="app">
+<h2>NOX AI ⚡ سريع جدًا</h2>
+<input id="input" placeholder="اكتب هنا...">
+<button onclick="sendMessage()">ارسال</button>
+<pre id="output">الدردشة ستظهر هنا...</pre>
+</div>
+
+<script>
+// الردود الجاهزة أو عامة
+const quickReplies = {
+  "سلام": "هلا 👋",
+  "كيفك": "تمام والحمد لله 😎، وانت؟",
+  "وقت": new Date().toLocaleTimeString(),
+  "تاريخ": new Date().toLocaleDateString()
+};
+
+// الدالة ترجع رد سريع
+function sendMessage() {
+  let input = document.getElementById("input").value.trim();
+  let output = document.getElementById("output");
+  if(!input) return;
+
+  output.innerText += "\n\nأنت: " + input;
+
+  let reply = quickReplies[input.toLowerCase()] || "تمام 👍"; // أي كلمة أخرى يرد "تمام 👍"
+
+  output.innerText += "\nAI: " + reply;
+  output.scrollTop = output.scrollHeight;
+  document.getElementById("input").value = "";
+}
+</script>
+
+</body>
+</html>
